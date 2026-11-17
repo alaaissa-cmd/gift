@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500&display=swap');
+
+:root{
+  --rose:#ff6f9c; --blush:#ffd1de; --peach:#ffb48a; --plum:#8a3a68; --cream:#fff3f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Tajawal',sans-serif; color:#fff; min-height:100vh; overflow-x:hidden;
+  background:linear-gradient(180deg,#ffc4d6 0%,#ff9fbd 28%,#ff7fa6 52%,#f7819b 70%,#ffa77f 88%,#ffc98f 100%);
+  background-attachment:fixed;
+}
+
+/* ===== الخلفية ===== */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.sun{
+  position:absolute;bottom:-18vmin;left:50%;transform:translateX(-50%);
+  width:70vmin;height:70vmin;border-radius:50%;
+  background:radial-gradient(circle,#fff3c4 0%,#ffd08a 35%,rgba(255,170,130,.55) 60%,transparent 72%);
+}
+.cloud{position:absolute;background:rgba(255,255,255,.35);border-radius:100px;filter:blur(2px);animation:drift linear infinite}
+.cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%}
+.cloud::before{width:50%;height:160%;top:-70%;left:15%}
+.cloud::after{width:36%;height:120%;top:-45%;left:50%}
+.c1{width:180px;height:44px;top:14%;animation-duration:70s}
+.c2{width:240px;height:54px;top:46%;animation-duration:95s;animation-delay:-30s;opacity:.7}
+.c3{width:150px;height:38px;top:72%;animation-duration:80s;animation-delay:-55s;opacity:.8}
+@keyframes drift{from{left:-300px}to{left:110%}}
+#sparkles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.sparkle{position:absolute;width:5px;height:5px;background:#fff;border-radius:50%;opacity:0;animation:twinkle 3.5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.9;transform:scale(1.2)}}
+
+/* ===== المحتوى ===== */
+#world{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:90px 20px 160px}
+.row{display:flex;align-items:flex-end;margin-bottom:150px}  /* المسافة بين الصفوف: غيّري الرقم */
+.row.center{justify-content:center}
+.row.left{justify-content:flex-start;padding-inline-start:6%}
+.row.right{justify-content:flex-end;padding-inline-end:6%}
+.row.pair{justify-content:center;align-items:flex-start;gap:14px}
+
+.title{
+  text-align:center;font-family:'Reem Kufi',sans-serif;font-weight:700;
+  font-size:clamp(28px,6vw,44px);margin:30px 0 10px;
+  text-shadow:0 3px 18px rgba(138,58,104,.45);
+}
+.subtitle{text-align:center;font-size:17px;opacity:.95;margin-bottom:34px;text-shadow:0 2px 10px rgba(138,58,104,.4)}
+
+/* ===== المنطاد ===== */
+.balloon{
+  background:none;border:0;cursor:pointer;width:var(--w,150px);
+  animation:float var(--dur,6s) ease-in-out infinite;animation-delay:var(--delay,0s);
+  filter:drop-shadow(0 14px 18px rgba(138,58,104,.35));
+  transition:transform .3s;
+}
+.balloon:hover{transform:scale(1.07) rotate(-2deg)}
+.balloon:focus-visible{outline:3px solid #fff;outline-offset:6px;border-radius:20px}
+.balloon svg{width:100%;height:auto;display:block;overflow:visible}
+.balloon.big{--w:210px}
+.balloon .label{
+  display:block;margin-top:2px;font-size:14px;text-align:center;color:#fff;
+  text-shadow:0 1px 6px rgba(138,58,104,.6);
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+/* ===== شاشة البداية ===== */
+#intro{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;
+  background:linear-gradient(180deg,#ffb7cc,#ff7fa6 60%,#ffa77f);transition:opacity .8s,visibility .8s;
+}
+#intro.gone{opacity:0;visibility:hidden}
+.intro-card{text-align:center;padding:30px}
+.intro-heart{font-size:64px;animation:beat 1.4s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.intro-card h1{font-family:'Reem Kufi',sans-serif;font-size:42px;margin:10px 0 4px;text-shadow:0 3px 14px rgba(138,58,104,.4)}
+.intro-card p{margin-bottom:24px;font-size:18px}
+#openBtn{
+  font:inherit;font-size:20px;font-weight:500;padding:12px 44px;border:0;border-radius:40px;cursor:pointer;
+  color:var(--plum);background:#fff;box-shadow:0 8px 24px rgba(138,58,104,.35);transition:transform .2s;
+}
+#openBtn:hover{transform:scale(1.06)}
+
+/* ===== زر الموسيقى ===== */
+#musicBtn{
+  position:fixed;top:16px;inset-inline-start:16px;z-index:20;width:46px;height:46px;border-radius:50%;
+  border:0;font-size:20px;cursor:pointer;background:rgba(255,255,255,.75);box-shadow:0 4px 14px rgba(138,58,104,.3);
+}
+#musicBtn.paused{opacity:.55;text-decoration:line-through}
+
+/* ===== نافذة الصورة ===== */
+#modal{
+  position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:20px;
+  background:rgba(120,30,80,.55);backdrop-filter:blur(6px);animation:fade .3s;
+}
+#modal.hidden{display:none}
+.modal-box{
+  position:relative;max-width:min(92vw,520px);background:var(--cream);color:var(--plum);
+  padding:14px 14px 18px;border-radius:22px;text-align:center;
+  box-shadow:0 30px 70px rgba(80,10,50,.5);animation:pop .4s cubic-bezier(.2,1.3,.4,1);
+}
+.modal-box img{width:100%;max-height:68vh;object-fit:cover;border-radius:14px;display:block}
+.modal-box p{margin-top:12px;font-size:18px;line-height:1.7;padding:0 8px}
+#closeBtn{
+  position:absolute;top:-14px;inset-inline-end:-14px;width:38px;height:38px;border-radius:50%;border:0;
+  background:#fff;color:var(--rose);font-size:26px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{from{opacity:0;transform:scale(.6) translateY(40px)}}
+
+@media (max-width:520px){
+  .balloon{--w:118px}.balloon.big{--w:165px}
+  .row{margin-bottom:110px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}

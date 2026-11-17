@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>هدية لك 💗</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- شاشة البداية (ضرورية لتشغيل الأغنية، المتصفح يمنع التشغيل التلقائي بدون نقرة) -->
+<div id="intro">
+  <div class="intro-card">
+    <div class="intro-heart">💗</div>
+    <h1>في شي إلك</h1>
+    <p>اضغطي لفتح الهدية</p>
+    <button id="openBtn">افتحي</button>
+  </div>
+</div>
+
+<!-- الخلفية -->
+<div class="sky">
+  <div class="sun"></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+</div>
+<div id="sparkles"></div>
+
+<!-- المحتوى: يتولد من script.js -->
+<main id="world"></main>
+
+<!-- زر الموسيقى -->
+<button id="musicBtn" aria-label="موسيقى">🎵</button>
+<audio id="song" src="music/song.mp3" loop></audio>
+
+<!-- نافذة الصورة -->
+<div id="modal" class="hidden">
+  <div class="modal-box">
+    <button id="closeBtn" aria-label="إغلاق">×</button>
+    <img id="modalImg" alt="">
+    <p id="modalCap"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
